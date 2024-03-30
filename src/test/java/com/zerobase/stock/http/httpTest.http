@@ -3,7 +3,7 @@ POST http://localhost:8080/company
 Content-Type: application/json
 
 {
-  "ticker": "MMM"
+  "ticker": "COKE"
 }
 
 ### Get test: get companies (page)
@@ -11,7 +11,7 @@ GET http://localhost:8080/company
 
 
 ### Get test: search dividends by company name
-GET http://localhost:8080/finance/dividend/O
+GET http://localhost:8080/finance/dividend/Coca-Cola Consolidated, Inc.
 
 ### Get test: autocomplete test
 GET http://localhost:8080/company/autocomplete?keyword=A
