@@ -8,6 +8,8 @@ import com.zerobase.stock.persist.repository.CompanyRepository;
 import com.zerobase.stock.persist.repository.DividendRepository;
 import com.zerobase.stock.scraper.Scraper;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -32,6 +34,9 @@ public class CompanyService {
         return this.storeCompanyAndDividend(ticker);
     }
 
+    public Page<CompanyEntity> getAllCompany(Pageable pageable){
+        return this.companyRepository.findAll(pageable);
+    }
     private Company storeCompanyAndDividend(String ticker) {
         // ticker 를 기준으로 회사를 스크래핑
         Company company = this.yahooFinanceScraper.scrapCompanyByTicker(ticker);

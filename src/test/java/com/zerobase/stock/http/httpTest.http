@@ -3,5 +3,8 @@ POST http://localhost:8080/company
 Content-Type: application/json
 
 {
-  "ticker": "MMM"
+  "ticker": "DIA"
 }
+
+### Get test: get companies (page)
+GET http://localhost:8080/company
