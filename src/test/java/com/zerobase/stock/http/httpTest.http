@@ -6,8 +6,11 @@ Content-Type: application/json
   "ticker": "COKE"
 }
 
-### Get test: get companies (page)
+### Get test: get companies (page) with token
 GET http://localhost:8080/company
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJncmFjZSIsInJvbGVzIjpbIlJPTEVfUkVBRCJdLCJpYXQiOjE3MTE4ODYzNzAsImV4cCI6MTcxMTg4OTk3MH0.tkXzyRHuZw8AlbRj0Dy_x1RwBgTBZiKaeFEjJdM6HRrwaPdoZhtU-ZBLp55yUckr2y76kH5WEqtvcLfYteILvw
+
 
 
 ### Get test: search dividends by company name
@@ -15,3 +18,24 @@ GET http://localhost:8080/finance/dividend/Coca-Cola Consolidated, Inc.
 
 ### Get test: autocomplete test
 GET http://localhost:8080/company/autocomplete?keyword=A
+
+
+### Post test: signup test
+POST http://localhost:8080/auth/signup
+Content-Type: application/json
+
+{
+  "username": "grace",
+  "password": "grace123!@#",
+  "roles": ["ROLE_READ"]
+}
+
+### Post test: signin test
+POST http://localhost:8080/auth/signin
+Content-Type: application/json
+
+{
+  "username": "grace",
+  "password": "grace123!@#"
+}
+
