@@ -1,5 +1,6 @@
 package com.zerobase.stock.service;
 
+import com.zerobase.stock.exception.impl.NoCompanyException;
 import com.zerobase.stock.model.Company;
 import com.zerobase.stock.model.ScrapedResult;
 import com.zerobase.stock.persist.entity.CompanyEntity;
@@ -9,7 +10,6 @@ import com.zerobase.stock.persist.repository.DividendRepository;
 import com.zerobase.stock.scraper.Scraper;
 import lombok.AllArgsConstructor;
 import org.apache.commons.collections4.Trie;
-import org.apache.commons.collections4.trie.PatriciaTrie;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -81,5 +81,16 @@ public class CompanyService {
 
     public void deleteAutocompleteKeyword(String keyword){
         this.trie.remove(keyword);
+    }
+
+    public String deleteCompany(String ticker) {
+        var company = this.companyRepository.findByTicker(ticker)
+                .orElseThrow(() -> new NoCompanyException());
+
+        this.dividendRepository.deleteAllByCompanyId(company.getId());
+        this.companyRepository.delete(company);
+
+        this.deleteAutocompleteKeyword(company.getName());
+        return company.getName();
     }
 }

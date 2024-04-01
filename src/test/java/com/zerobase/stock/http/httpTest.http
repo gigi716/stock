@@ -1,20 +1,24 @@
 ### Post test: addCompany
 POST http://localhost:8080/company
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJncmFjZSIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzExOTY3MTYzLCJleHAiOjE3MTE5NzA3NjN9.Ytw9TNxgaYNjo7fYdyVT1ZYrlVyaSw0kY1z7Z7vB8N4K7rkpUs3CH2HMmOku38GqcS37_s2UI8NI7rV5j1J63A
+
 
 {
-  "ticker": "COKE"
+  "ticker": "MMM"
 }
 
 ### Get test: get companies (page) with token
 GET http://localhost:8080/company
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJncmFjZSIsInJvbGVzIjpbIlJPTEVfUkVBRCJdLCJpYXQiOjE3MTE4ODYzNzAsImV4cCI6MTcxMTg4OTk3MH0.tkXzyRHuZw8AlbRj0Dy_x1RwBgTBZiKaeFEjJdM6HRrwaPdoZhtU-ZBLp55yUckr2y76kH5WEqtvcLfYteILvw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJncmFjZSIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzExODg4NDMwLCJleHAiOjE3MTE4OTIwMzB9.A6UdVsVjmKkcNGc4XY9T5lvcC1xePVQYZEsEJbQfEYdxcvF1f-RJqQRA3Srw8GVtdSdnQAaLSIbzbzPjgM2vZg
 
 
 
 ### Get test: search dividends by company name
-GET http://localhost:8080/finance/dividend/Coca-Cola Consolidated, Inc.
+GET http://localhost:8080/finance/dividend/3M C
+//Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJncmFjZSIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzExODg4NDMwLCJleHAiOjE3MTE4OTIwMzB9.A6UdVsVjmKkcNGc4XY9T5lvcC1xePVQYZEsEJbQfEYdxcvF1f-RJqQRA3Srw8GVtdSdnQAaLSIbzbzPjgM2vZg
+
 
 ### Get test: autocomplete test
 GET http://localhost:8080/company/autocomplete?keyword=A
@@ -27,7 +31,7 @@ Content-Type: application/json
 {
   "username": "grace",
   "password": "grace123!@#",
-  "roles": ["ROLE_READ"]
+  "roles": ["ROLE_READ", "ROLE_WRITE"]
 }
 
 ### Post test: signin test
@@ -38,4 +42,9 @@ Content-Type: application/json
   "username": "grace",
   "password": "grace123!@#"
 }
+
+
+### Delete test: delete company
+DELETE http://localhost:8080/company/MMM
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJncmFjZSIsInJvbGVzIjpbIlJPTEVfUkVBRCIsIlJPTEVfV1JJVEUiXSwiaWF0IjoxNzExODg4NDMwLCJleHAiOjE3MTE4OTIwMzB9.A6UdVsVjmKkcNGc4XY9T5lvcC1xePVQYZEsEJbQfEYdxcvF1f-RJqQRA3Srw8GVtdSdnQAaLSIbzbzPjgM2vZg
 

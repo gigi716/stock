@@ -1,7 +1,6 @@
 package com.zerobase.stock.web;
 
 import com.zerobase.stock.model.Auth;
-import com.zerobase.stock.model.MemberEntity;
 import com.zerobase.stock.security.TokenProvider;
 import com.zerobase.stock.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +31,7 @@ public class AuthController {
     public ResponseEntity<?> signin(@RequestBody Auth.SignIn request) {
         var member = this.memberService.authenticate(request);
         var token = this.tokenProvider.generateToken(member.getUsername(), member.getRoles());
+        log.info("user login ->" + request.getUsername());
         return ResponseEntity.ok(token);
     }
 }
